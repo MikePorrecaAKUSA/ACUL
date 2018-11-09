@@ -1,2 +1,2 @@
-# botbank
-A digital banking platform demo
+# ACUL Website
+Website code for ACUL
