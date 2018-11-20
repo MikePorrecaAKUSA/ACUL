@@ -16,20 +16,16 @@ app.use(bodyParser.urlencoded({
 
 app.use(bodyParser.json());
 
-// Get the session going!
-var cookieParser = require('cookie-parser');
-var session = require('express-session');
-app.use(cookieParser());
-app.use(session({ secret: "botbank", cookie: { maxAge: null } }));
-
 app.engine('pug', require('pug').__express)
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
 
 //routing setup
 var home = require('./routes/home');
+var rosters = require('./routes/rosters');
 
 app.use('/', home);
+app.use('/rosters', rosters);
 
 app.use(express.static('static'));
 

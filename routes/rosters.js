@@ -19,7 +19,7 @@ const client = contentful.createClient({
 });
 
 /* GET home page. */
-router.get('/', function (req, res) {    
+router.get('/roster1', function (req, res) {    
     return client.getEntries({
       content_type: "homePageItem",
       order: "sys.createdAt"    
@@ -35,33 +35,10 @@ router.get('/', function (req, res) {
         }
     })
     .catch((error) => {
-      console.log(`\nError occurred while fetching Entries `)
-      console.error(error)
+      console.log('\nError occurred while fetching Entries ');
+      console.error(error);
       res.end();
     });    
 });
-
-router.get('/page2', function (req, res) {    
-  return client.getEntries({
-    content_type: "homePageItem",
-    order: "sys.createdAt"    
-  })
-  .then(function(response){
-
-    console.log(response.items);
-
-      if(response.items){
-        res.render('index', { title: "ACUL - Home", content: response.items });
-      }  else {
-        res.end();
-      }
-  })
-  .catch((error) => {
-    console.log(`\nError occurred while fetching Entries `)
-    console.error(error)
-    res.end();
-  });    
-});
-
 
 module.exports = router;
