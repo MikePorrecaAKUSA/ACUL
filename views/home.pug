@@ -1,0 +1,21 @@
+extends template.pug
+
+block content
+    div
+        h2 Join us on&nbsp;
+            a(href="https://www.facebook.com/AlaskaCreditUnionLeague/", target="new") facebook
+                img(src="images/facebook.png",width="500",height="267",alt="Facebook cover image")
+        each item in content        
+            
+            if item.fields.title
+                h2 
+                    if item.fields.titleUrl
+                        a(href=item.fields.titleUrl) #{item.fields.title}
+                    else                        
+                        | #{item.fields.title}
+            if item.fields.content
+                p #{item.fields.content}
+                    if item.fields.readMoreUrl
+                        a(href=item.fields.readMoreUrl) &nbsp; Read more...
+
+block scripts
