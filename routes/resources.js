@@ -23,8 +23,8 @@ const client = contentful.createClient({
 });
 
 /* GET home page. */
-router.get('/rosters', function (req, res) {    
-    res.render('rosters', { title: "ACUL - rosters"});
+router.get('/resources', function (req, res) {    
+    res.render('resources', { title: "ACUL - resources"});
 });
 
 module.exports = router;
