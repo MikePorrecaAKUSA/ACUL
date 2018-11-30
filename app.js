@@ -3,11 +3,15 @@
 var express = require('express');
 var http = require('http');
 var https = require('https');
+var favicon = require('serve-favicon');
 var app = express();
+app.use(favicon(__dirname + '/favicon.ico'));
 var path = require('path');
 var fs = require("fs");
+
 require('dotenv').load();
 
+const { catchErrors } = require('./handlers/errorHandlers')
 const bodyParser = require('body-parser');
 
 app.use(bodyParser.urlencoded({
@@ -21,13 +25,13 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
 
 //routing setup
-var home = require('./routes/home');
-var rosters = require('./routes/rosters');
-
-app.use('/', home);
-app.use('/rosters', rosters);
+const routes = require('./routes/index');
 
 app.use(express.static('static'));
+
+// Initialize the route handling
+// Check ./routes/index.js to get a list of all implemented routes
+app.use('/', routes);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
