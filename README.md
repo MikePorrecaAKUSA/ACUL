@@ -17,6 +17,7 @@ Running the Application
 * Install node packages
   * navigate to ACUL directory
   * type 'npm install app'
+  * type 'npm install favicon'
 * Run the application
   * 'node app' from the command line
 * Navigate to the website in your browser.
