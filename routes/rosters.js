@@ -22,9 +22,26 @@ const client = contentful.createClient({
   accessToken: ACCESS_TOKEN
 });
 
-/* GET home page. */
-router.get('/rosters', function (req, res) {    
-    res.render('rosters', { title: "ACUL - rosters"});
+/* GET roster page. */
+router.get('/rosters', function (req, res) {   
+	  return client.getEntries({
+      content_type: "rosterCu"  
+    })
+	  .then(function(response){
+	  	console.log(response.items);
+	  		if(response.items){
+	  			res.render('rosters', { title: "ACUL - Rosters", content: response.items});
+	  			} else {
+	  				res.end();
+	  			}
+	  })
+	  .catch((error) => {
+	  	console.log('\nError occurred while fetching Entries')
+	  	console.error(error)
+	  	res.end();
+	  	
+	  });
+	  			
 });
 
 module.exports = router;
