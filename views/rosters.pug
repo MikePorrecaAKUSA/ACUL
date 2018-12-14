@@ -1,7 +1,11 @@
 extends template.pug
 
-block content
-    div
-        p ROSTERS
-
+block selectionSidebar
+    .sectionSidebar
+        h3 League Rosters
+        each item in content
+            a(href=item.fields.creditUnionUrl) #{item.fields.creditUnionName}
+            br
+    .bodyContent
+        h3 Column 2
 block scripts
